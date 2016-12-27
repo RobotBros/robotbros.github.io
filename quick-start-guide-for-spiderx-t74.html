@@ -43,7 +43,7 @@
                         <div class="item">
                             <i class="ui icon clock"></i>
                             <div class="middle aligned content">
-                                2016年12月26日 21:51:28
+                                2016年12月27日 15:59:36
                             </div>
                         </div>
 
@@ -84,6 +84,51 @@
 
 <p><img src="/assets/images/products/spiderx-servo-control-board-t74-001.png" alt="t74" /></p>
 
+<h2 id="安装与接线24g无线控制篇">安装与接线（2.4G无线控制篇）</h2>
+
+<h4 id="1-准备材料如下图其中包括">1. 准备材料如下图，其中包括：</h4>
+
+<ul>
+  <li>T74 * 1，</li>
+  <li>2.4G无线控制模块nRF24L01</li>
+  <li>7.4v电源，舵机多个。</li>
+  <li>本节将讲解如何使用2.4g，所以蓝牙模块无需准备。</li>
+</ul>
+
+<p><img src="/assets/images/post/IMG_0419.png" alt="step-1" /></p>
+
+<h4 id="2-t74板载24g无线接口spi口用户可以方便的安装24g模块安装非常简单如下图所示">2. T74板载2.4G无线接口(SPI口)，用户可以方便的安装2.4g模块，安装非常简单，如下图所示：</h4>
+
+<p><img src="/assets/images/post/IMG_0420.png" alt="step-2" /></p>
+
+<h4 id="3-t74支持最多22路舵机控制安装舵机务必要看清楚舵机的接线以免烧坏舵机以r-b-f为例从左至有分别为地线电源线和pwm信号线22路舵机的接口都以英文字母命名具体命名对应规则请看表1">3. T74支持最多22路舵机控制，安装舵机<em>务必要看清楚舵机的接线，以免烧坏舵机</em>。以R-B-F为例，从左至有分别为地线，电源线和PWM信号线。22路舵机的接口都以英文字母命名，具体命名对应规则，请看<a href="#table1">表1</a>。</h4>
+
+<p><img src="/assets/images/post/IMG_0421.png" alt="step-3" /></p>
+
+<h4 id="4-电源使用的是74v-2芯锂电池品牌可以根据自己喜好选择安装大功告成非常简单成品如下图">4. 电源使用的是7.4v 2芯锂电池，品牌可以根据自己喜好选择。安装大功告成，非常简单。成品如下图：</h4>
+
+<p><img src="/assets/images/post/IMG_0423.png" alt="step-4" /></p>
+
+<h4 id="5-上电测试t74右上方有一个红色的拨动开关向右波动后应该可以看到蓝色led指示灯闪烁并听到beep的一声的蜂鸣器声音t74默认已经烧写了24g无线控制的固件若固件未烧写可以根据需要烧写固件本文默认使用spiderx-cube-110的固件做演示">5. 上电测试。T74右上方有一个红色的拨动开关，向右波动后，应该可以看到蓝色LED指示灯闪烁，并听到beep的一声的蜂鸣器声音。（T74默认已经烧写了2.4g无线控制的固件，若固件未烧写，可以根据需要烧写固件，本文默认使用SpiderX-Cube 1.1.0的固件做演示。）</h4>
+
+<h2 id="安装与接线蓝牙40篇">安装与接线（蓝牙4.0篇）</h2>
+
+<h4 id="1-蓝牙控制与24g无线控制基本一样蓝牙模块安装如下图所示需注意的是蓝牙模块与市面的模块有些不一样需要采用长针方案同时spiderx-cube提供了蓝牙40的例程和蓝牙20的例程详细的代码讲解将在后续的博文中展开">1. 蓝牙控制与2.4g无线控制基本一样，蓝牙模块安装如下图所示，需注意的是，蓝牙模块与市面的模块有些不一样，需要采用长针方案。同时SpiderX-Cube提供了蓝牙4.0的例程，和蓝牙2.0的例程，详细的代码讲解将在后续的博文中展开。</h4>
+
+<p><img src="/assets/images/post/IMG_0425.png" alt="step-4" /></p>
+
+<h3 id="-表1"><a name="table1"></a> 表1</h3>
+
+<ul>
+  <li>R - 右脚</li>
+  <li>L - 左脚</li>
+  <li>B - 后足</li>
+  <li>F - 前关节 ／ 前足</li>
+  <li>E - 末端关节</li>
+  <li>M - 中间关节 ／ 中足</li>
+</ul>
+
+
             </div>
 
             <div class="ten wide column">
@@ -121,6 +166,48 @@
                                 </td>
                             </tr>
                             
+                            <tr>
+                                <td>
+                                    <h4 class="ui image header">
+                                        <img src="/assets/images/products/nrf24l01-001.jpg" class="ui mini rounded image">
+                                        <div class="content">NRF24L01 2.4G通信模块
+                                        <div class="sub header">
+                                            
+                                            <span class="item">小巧</span>
+                                            
+                                        </div>
+                                        </div>
+                                    </h4>
+                                </td>
+                                <td class="right aligned">
+                                    <!-- <a class="ui mini basic teal button" href="/product/nrf24l01">详情</a> -->
+                                    <a class="ui mini basic red button" href="https://item.taobao.com/item.htm?spm=a1z10.1-c.w4004-13229367251.9.hMV3Ai&id=537730117541" target="_blank">购买</a>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>
+                                    <h4 class="ui image header">
+                                        <img src="/assets/images/products/ble-bt05-001.png" class="ui mini rounded image">
+                                        <div class="content">蓝牙4.0透传模块 cc2540
+                                        <div class="sub header">
+                                            
+                                            <span class="item">小巧</span>
+                                            
+                                            <span class="item">透传</span>
+                                            
+                                            <span class="item">蓝牙4.0</span>
+                                            
+                                        </div>
+                                        </div>
+                                    </h4>
+                                </td>
+                                <td class="right aligned">
+                                    <!-- <a class="ui mini basic teal button" href="/product/nrf24l01">详情</a> -->
+                                    <a class="ui mini basic red button" href="https://item.taobao.com/item.htm?spm=a1z10.1-c.w4004-13229367251.10.hMV3Ai&id=537690818981" target="_blank">购买</a>
+                                </td>
+                            </tr>
+                            
                         
                     </tbody>
                 </table>
@@ -134,11 +221,15 @@
                     </thead>
                     <tbody>
                         
+                            
                             <tr>
-                                <td colspan="3" class="center aligned">
-                                    没有相关软件
+                                <td>SpiderX-Cube</td>
+                                <td>1.1.0</td>
+                                <td class="right aligned">
+                                    <a class="ui mini basic teal button" href="https://github.com/RobotBros/SpiderXCube/archive/v1.1.0.tar.gz" target="_blank">下载</a>
                                 </td>
                             </tr>
+                            
                         
                     </tbody>
                 </table>
@@ -227,6 +318,10 @@
                         <a class="item" href="/Hello">Hello</a>
                         
                         <a class="item" href="/QuickStart">QuickStart</a>
+                        
+                        <a class="item" href="/SpiderXCube">SpiderXCube</a>
+                        
+                        <a class="item" href="/LiteOS">LiteOS</a>
                         
                     </div>
                 </div>
