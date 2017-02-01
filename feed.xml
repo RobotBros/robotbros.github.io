@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2016-12-27T21:49:58+08:00</updated><id>//</id><title type="html">RobotBros</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
-</subtitle><entry><title type="html">在SpiderX T74运行Huawei LiteOS</title><link href="/liteos-on-spiderx-t74" rel="alternate" type="text/html" title="在SpiderX T74运行Huawei LiteOS" /><published>2016-12-27T18:51:36+08:00</published><updated>2016-12-27T18:51:36+08:00</updated><id>/liteos-on-spiderx-t74</id><content type="html" xml:base="/liteos-on-spiderx-t74"></content><author><name>Enix Yu</name></author><summary type="html"></summary></entry><entry><title type="html">SpiderX Cube代码讲解系列 Part1</title><link href="/spiderx-cube-explain-1" rel="alternate" type="text/html" title="SpiderX Cube代码讲解系列 Part1" /><published>2016-12-27T17:59:36+08:00</published><updated>2016-12-27T17:59:36+08:00</updated><id>/spiderx-cube-explain-1</id><content type="html" xml:base="/spiderx-cube-explain-1"></content><author><name>Enix Yu</name></author><summary type="html"></summary></entry><entry><title type="html">SpiderX T74开发板快速上手指南</title><link href="/quick-start-guide-for-spiderx-t74" rel="alternate" type="text/html" title="SpiderX T74开发板快速上手指南" /><published>2016-12-27T15:59:36+08:00</published><updated>2016-12-27T15:59:36+08:00</updated><id>/quick-start-guide-for-spiderx-t74</id><content type="html" xml:base="/quick-start-guide-for-spiderx-t74">&lt;h2 id=&quot;简介&quot;&gt;简介&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-02-01T22:50:04+08:00</updated><id>http://localhost:4000//</id><title type="html">RobotBros</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+</subtitle><entry><title type="html">在SpiderX T74运行Huawei LiteOS</title><link href="http://localhost:4000/liteos-on-spiderx-t74" rel="alternate" type="text/html" title="在SpiderX T74运行Huawei LiteOS" /><published>2016-12-27T18:51:36+08:00</published><updated>2016-12-27T18:51:36+08:00</updated><id>http://localhost:4000/liteos-on-spiderx-t74</id><content type="html" xml:base="http://localhost:4000/liteos-on-spiderx-t74"></content><author><name>Enix Yu</name></author><summary type="html"></summary></entry><entry><title type="html">SpiderX Cube代码讲解系列 Part1</title><link href="http://localhost:4000/spiderx-cube-explain-1" rel="alternate" type="text/html" title="SpiderX Cube代码讲解系列 Part1" /><published>2016-12-27T17:59:36+08:00</published><updated>2016-12-27T17:59:36+08:00</updated><id>http://localhost:4000/spiderx-cube-explain-1</id><content type="html" xml:base="http://localhost:4000/spiderx-cube-explain-1"></content><author><name>Enix Yu</name></author><summary type="html"></summary></entry><entry><title type="html">SpiderX T74开发板快速上手指南</title><link href="http://localhost:4000/quick-start-guide-for-spiderx-t74" rel="alternate" type="text/html" title="SpiderX T74开发板快速上手指南" /><published>2016-12-27T15:59:36+08:00</published><updated>2016-12-27T15:59:36+08:00</updated><id>http://localhost:4000/quick-start-guide-for-spiderx-t74</id><content type="html" xml:base="http://localhost:4000/quick-start-guide-for-spiderx-t74">&lt;h2 id=&quot;简介&quot;&gt;简介&lt;/h2&gt;
 
 &lt;p&gt;SpiderX T74是一款自主研发的专门面向机器人爱好者的开发平台，借助T74，你可以实现多达22路的舵机控制，同时集成了蓝牙4.0模块接口，蓝牙2.0模块接口，wifi接口，NRF24L01 SPI 接口。方便你选择市面流行的任意一种无线方案实现无线控制。&lt;/p&gt;
 
@@ -49,12 +49,103 @@
   &lt;li&gt;F - 前关节 ／ 前足&lt;/li&gt;
   &lt;li&gt;E - 末端关节&lt;/li&gt;
   &lt;li&gt;M - 中间关节 ／ 中足&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Enix Yu</name></author><summary type="html">简介</summary></entry><entry><title type="html">遥控板 JY144快速上手指南</title><link href="/quick-start-guide-for-joystick-jy144" rel="alternate" type="text/html" title="遥控板 JY144快速上手指南" /><published>2016-12-27T15:59:36+08:00</published><updated>2016-12-27T15:59:36+08:00</updated><id>/quick-start-guide-for-joystick-jy144</id><content type="html" xml:base="/quick-start-guide-for-joystick-jy144">&lt;h2 id=&quot;使用场合&quot;&gt;使用场合&lt;/h2&gt;
+&lt;/ul&gt;</content><author><name>Enix Yu</name></author><summary type="html">简介</summary></entry><entry><title type="html">遥控板 JY144快速上手指南</title><link href="http://localhost:4000/quick-start-guide-for-joystick-jy144" rel="alternate" type="text/html" title="遥控板 JY144快速上手指南" /><published>2016-12-27T15:59:36+08:00</published><updated>2016-12-27T15:59:36+08:00</updated><id>http://localhost:4000/quick-start-guide-for-joystick-jy144</id><content type="html" xml:base="http://localhost:4000/quick-start-guide-for-joystick-jy144">&lt;h2 id=&quot;简介&quot;&gt;简介&lt;/h2&gt;
 
 &lt;p&gt;机器人遥控手柄，无人机遥控手柄，玩具车控制摇杆…
 配合陀螺仪，水平仪可实现更多玩法哦&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/products/joystick-board-jy144-001.jpg&quot; alt=&quot;jy144&quot; /&gt;&lt;/p&gt;</content><author><name>Enix Yu</name></author><summary type="html">使用场合</summary></entry><entry><title type="html">Hello World</title><link href="/hello-world" rel="alternate" type="text/html" title="Hello World" /><published>2016-12-22T21:51:28+08:00</published><updated>2016-12-22T21:51:28+08:00</updated><id>/hello-world</id><content type="html" xml:base="/hello-world">&lt;h1 id=&quot;robotbroscn-website正式上线纪念&quot;&gt;RobotBros.cn website正式上线纪念&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/products/joystick-board-jy144-001.jpg&quot; alt=&quot;jy144&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;安装&quot;&gt;安装&lt;/h2&gt;
+
+&lt;p&gt;开箱后，配件如下图所示，配件包含开发板&lt;em&gt;1，1.44寸彩色显示屏&lt;/em&gt;1，3.7v电池&lt;em&gt;1，2.4G无线传输模块&lt;/em&gt;1，摇杆*2：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/post/IMG_0453.png&quot; alt=&quot;jy144&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;第一步安装电池&quot;&gt;第一步，安装电池&lt;/h3&gt;
+
+&lt;p&gt;电池附送了一个魔术贴，可以让电池粘附在开发板上，安装电池后，如下图所示：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/post/IMG_0454.png&quot; alt=&quot;jy144&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;第二步安装显示屏&quot;&gt;第二步，安装显示屏&lt;/h3&gt;
+
+&lt;p&gt;1.44寸显示屏的安装如下图所示，显示屏排针只需对准开发板的蓝色的插孔即可：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/post/IMG_0455.png&quot; alt=&quot;jy144&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;第三步安装24g模块摇杆&quot;&gt;第三步，安装2.4G模块，摇杆&lt;/h3&gt;
+
+&lt;p&gt;2.4g模块安装也是非常简单，排针只需对齐黄色接口即可，安装完毕后，如下图所示：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/post/IMG_0456.png&quot; alt=&quot;jy144&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;第四步上电测试&quot;&gt;第四步，上电测试&lt;/h3&gt;
+
+&lt;p&gt;准备完毕后，只需向右拨动开发板左上方的红色按钮，即可为开发板上电。开发板在出厂时已烧录了固件，正常上电后，可以看到一个”RobotBros”的logo，并有一系列的检测信息输出，如果配置没有问题的话，屏幕如图所示，屏幕显示了两个数据，第一行的是剩余电量，第二行为电池采样电压值，如果电压值过低，则需要对电池充电：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/post/IMG_0459.png&quot; alt=&quot;jy144&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;电池充电&quot;&gt;电池充电&lt;/h3&gt;
+
+&lt;p&gt;开发板内置了USB充电模块，用户可以使用USB线对电池进行充电。充电过程中，请保持开关为闭合状态（拨动开关处于左侧）。充电过程中，蓝色灯会保持常亮，当蓝色灯熄灭后，表示充电完成。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/post/IMG_0460.png&quot; alt=&quot;jy144&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;通过swd烧写口烧录固件&quot;&gt;通过SWD烧写口烧录固件&lt;/h3&gt;
+
+&lt;p&gt;开发板预留了SWD开发口，可以让开发人员方便的烧录固件。接线如下图所示&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/post/IMG_0461.png&quot; alt=&quot;jy144&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;固件下载&quot;&gt;固件下载&lt;/h2&gt;
+
+&lt;p&gt;开源程序&lt;a href=&quot;https://github.com/RobotBros/SpiderXCube&quot;&gt;SpiderX-Cube&lt;/a&gt;中，包含了遥控开发板的固件，对应的文件夹为：Joystick-ROM&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;如果您使用的是MDK Keil，则打开Joystick-ROM/USER/PWM.uvprojx启动项目&lt;/li&gt;
+  &lt;li&gt;若您使用的是IAR，则打开Joystick-ROM/EWARM/Joystick-ROM.eww启动项目。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;mainc文件介绍&quot;&gt;main.c文件介绍&lt;/h3&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;   
+    &lt;span class=&quot;c1&quot;&gt;// 系统初始化&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;SysInit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;   
+        &lt;span class=&quot;c1&quot;&gt;// 判断是否初始化成功&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;System_fault_flag&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SYSTEM_NO_FAULT&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;c1&quot;&gt;// 获取ad采样的数值&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;Get_all_percentage_ad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+            
+            &lt;span class=&quot;c1&quot;&gt;// 设置LCD背景灯光&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;LCD_backlight_set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+
+            &lt;span class=&quot;c1&quot;&gt;// 读取IMU数据（如有IMU模块）&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;Imu_motion_read&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+
+            &lt;span class=&quot;c1&quot;&gt;// 获取按键状态&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;Key_action&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; 
+
+            &lt;span class=&quot;c1&quot;&gt;// 通过2.4G发送数据&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;Syterm_master_nrf_tx_handle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+
+            &lt;span class=&quot;c1&quot;&gt;// 接收数据&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;Syterm_master_nrf_rx_handle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;          
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;System_fault_check_handle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;System_fault_clear_handle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;    
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;更多代码的实现，请查看&lt;a href=&quot;https://github.com/RobotBros/SpiderXCube&quot;&gt;SpiderX-Cube&lt;/a&gt;中关于Joystick-ROM的部分。&lt;/p&gt;</content><author><name>Enix Yu</name></author><summary type="html">简介</summary></entry><entry><title type="html">Hello World</title><link href="http://localhost:4000/hello-world" rel="alternate" type="text/html" title="Hello World" /><published>2016-12-22T21:51:28+08:00</published><updated>2016-12-22T21:51:28+08:00</updated><id>http://localhost:4000/hello-world</id><content type="html" xml:base="http://localhost:4000/hello-world">&lt;h1 id=&quot;robotbroscn-website正式上线纪念&quot;&gt;RobotBros.cn website正式上线纪念&lt;/h1&gt;
 
 &lt;p&gt;这是robotbros.cn网站改版后的第一个贴，特以此纪念。&lt;/p&gt;
 

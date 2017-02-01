@@ -76,12 +76,103 @@
         <div class="ui grid">
             <div class="sixteen wide column" style="font-size: 1.1em;">
                 <!-- 内容-->
-                <h2 id="使用场合">使用场合</h2>
+                <h2 id="简介">简介</h2>
 
 <p>机器人遥控手柄，无人机遥控手柄，玩具车控制摇杆…
 配合陀螺仪，水平仪可实现更多玩法哦</p>
 
 <p><img src="/assets/images/products/joystick-board-jy144-001.jpg" alt="jy144" /></p>
+
+<h2 id="安装">安装</h2>
+
+<p>开箱后，配件如下图所示，配件包含开发板<em>1，1.44寸彩色显示屏</em>1，3.7v电池<em>1，2.4G无线传输模块</em>1，摇杆*2：</p>
+
+<p><img src="/assets/images/post/IMG_0453.png" alt="jy144" /></p>
+
+<h3 id="第一步安装电池">第一步，安装电池</h3>
+
+<p>电池附送了一个魔术贴，可以让电池粘附在开发板上，安装电池后，如下图所示：</p>
+
+<p><img src="/assets/images/post/IMG_0454.png" alt="jy144" /></p>
+
+<h3 id="第二步安装显示屏">第二步，安装显示屏</h3>
+
+<p>1.44寸显示屏的安装如下图所示，显示屏排针只需对准开发板的蓝色的插孔即可：</p>
+
+<p><img src="/assets/images/post/IMG_0455.png" alt="jy144" /></p>
+
+<h3 id="第三步安装24g模块摇杆">第三步，安装2.4G模块，摇杆</h3>
+
+<p>2.4g模块安装也是非常简单，排针只需对齐黄色接口即可，安装完毕后，如下图所示：</p>
+
+<p><img src="/assets/images/post/IMG_0456.png" alt="jy144" /></p>
+
+<h3 id="第四步上电测试">第四步，上电测试</h3>
+
+<p>准备完毕后，只需向右拨动开发板左上方的红色按钮，即可为开发板上电。开发板在出厂时已烧录了固件，正常上电后，可以看到一个”RobotBros”的logo，并有一系列的检测信息输出，如果配置没有问题的话，屏幕如图所示，屏幕显示了两个数据，第一行的是剩余电量，第二行为电池采样电压值，如果电压值过低，则需要对电池充电：</p>
+
+<p><img src="/assets/images/post/IMG_0459.png" alt="jy144" /></p>
+
+<h3 id="电池充电">电池充电</h3>
+
+<p>开发板内置了USB充电模块，用户可以使用USB线对电池进行充电。充电过程中，请保持开关为闭合状态（拨动开关处于左侧）。充电过程中，蓝色灯会保持常亮，当蓝色灯熄灭后，表示充电完成。</p>
+
+<p><img src="/assets/images/post/IMG_0460.png" alt="jy144" /></p>
+
+<h3 id="通过swd烧写口烧录固件">通过SWD烧写口烧录固件</h3>
+
+<p>开发板预留了SWD开发口，可以让开发人员方便的烧录固件。接线如下图所示</p>
+
+<p><img src="/assets/images/post/IMG_0461.png" alt="jy144" /></p>
+
+<h2 id="固件下载">固件下载</h2>
+
+<p>开源程序<a href="https://github.com/RobotBros/SpiderXCube">SpiderX-Cube</a>中，包含了遥控开发板的固件，对应的文件夹为：Joystick-ROM</p>
+
+<ul>
+  <li>如果您使用的是MDK Keil，则打开Joystick-ROM/USER/PWM.uvprojx启动项目</li>
+  <li>若您使用的是IAR，则打开Joystick-ROM/EWARM/Joystick-ROM.eww启动项目。</li>
+</ul>
+
+<h3 id="mainc文件介绍">main.c文件介绍</h3>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>   
+    <span class="c1">// 系统初始化</span>
+    <span class="n">SysInit</span><span class="p">();</span>
+
+    <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="p">{</span>   
+        <span class="c1">// 判断是否初始化成功</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">System_fault_flag</span> <span class="o">==</span> <span class="n">SYSTEM_NO_FAULT</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="c1">// 获取ad采样的数值</span>
+            <span class="n">Get_all_percentage_ad</span><span class="p">();</span>
+            
+            <span class="c1">// 设置LCD背景灯光</span>
+            <span class="n">LCD_backlight_set</span><span class="p">();</span>
+
+            <span class="c1">// 读取IMU数据（如有IMU模块）</span>
+            <span class="n">Imu_motion_read</span><span class="p">();</span>
+
+            <span class="c1">// 获取按键状态</span>
+            <span class="n">Key_action</span><span class="p">();</span> 
+
+            <span class="c1">// 通过2.4G发送数据</span>
+            <span class="n">Syterm_master_nrf_tx_handle</span><span class="p">();</span>
+
+            <span class="c1">// 接收数据</span>
+            <span class="n">Syterm_master_nrf_rx_handle</span><span class="p">();</span>          
+        <span class="p">}</span>
+        <span class="k">else</span>
+        <span class="p">{</span>
+            <span class="n">System_fault_check_handle</span><span class="p">();</span>
+            <span class="n">System_fault_clear_handle</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>    
+<span class="p">}</span></code></pre></figure>
+
+<p>更多代码的实现，请查看<a href="https://github.com/RobotBros/SpiderXCube">SpiderX-Cube</a>中关于Joystick-ROM的部分。</p>
 
             </div>
 
