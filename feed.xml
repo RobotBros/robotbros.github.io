@@ -1,5 +1,141 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-02-01T22:50:04+08:00</updated><id>http://localhost:4000//</id><title type="html">RobotBros</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
-</subtitle><entry><title type="html">在SpiderX T74运行Huawei LiteOS</title><link href="http://localhost:4000/liteos-on-spiderx-t74" rel="alternate" type="text/html" title="在SpiderX T74运行Huawei LiteOS" /><published>2016-12-27T18:51:36+08:00</published><updated>2016-12-27T18:51:36+08:00</updated><id>http://localhost:4000/liteos-on-spiderx-t74</id><content type="html" xml:base="http://localhost:4000/liteos-on-spiderx-t74"></content><author><name>Enix Yu</name></author><summary type="html"></summary></entry><entry><title type="html">SpiderX Cube代码讲解系列 Part1</title><link href="http://localhost:4000/spiderx-cube-explain-1" rel="alternate" type="text/html" title="SpiderX Cube代码讲解系列 Part1" /><published>2016-12-27T17:59:36+08:00</published><updated>2016-12-27T17:59:36+08:00</updated><id>http://localhost:4000/spiderx-cube-explain-1</id><content type="html" xml:base="http://localhost:4000/spiderx-cube-explain-1"></content><author><name>Enix Yu</name></author><summary type="html"></summary></entry><entry><title type="html">SpiderX T74开发板快速上手指南</title><link href="http://localhost:4000/quick-start-guide-for-spiderx-t74" rel="alternate" type="text/html" title="SpiderX T74开发板快速上手指南" /><published>2016-12-27T15:59:36+08:00</published><updated>2016-12-27T15:59:36+08:00</updated><id>http://localhost:4000/quick-start-guide-for-spiderx-t74</id><content type="html" xml:base="http://localhost:4000/quick-start-guide-for-spiderx-t74">&lt;h2 id=&quot;简介&quot;&gt;简介&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-02-04T11:40:51+08:00</updated><id>http://localhost:4000//</id><title type="html">RobotBros</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+</subtitle><entry><title type="html">在SpiderX T74运行Huawei LiteOS</title><link href="http://localhost:4000/liteos-on-spiderx-t74" rel="alternate" type="text/html" title="在SpiderX T74运行Huawei LiteOS" /><published>2016-12-27T18:51:36+08:00</published><updated>2016-12-27T18:51:36+08:00</updated><id>http://localhost:4000/liteos-on-spiderx-t74</id><content type="html" xml:base="http://localhost:4000/liteos-on-spiderx-t74"></content><author><name>Enix Yu</name></author><summary type="html"></summary></entry><entry><title type="html">SpiderX Cube代码讲解系列 Part1</title><link href="http://localhost:4000/spiderx-cube-explain-1" rel="alternate" type="text/html" title="SpiderX Cube代码讲解系列 Part1" /><published>2016-12-27T17:59:36+08:00</published><updated>2016-12-27T17:59:36+08:00</updated><id>http://localhost:4000/spiderx-cube-explain-1</id><content type="html" xml:base="http://localhost:4000/spiderx-cube-explain-1">&lt;h2 id=&quot;简介&quot;&gt;简介&lt;/h2&gt;
+
+&lt;p&gt;SpiderXCube是舵机控制板T74，遥控板JY144的代码库例程。SpiderXCube类似于ST公司的STM32Fxx_Cube，其中包括了最基本的单元使用例程，例如2.4G无线控制，蓝牙2.0，蓝牙4.0模块的使用例程，JOYSTICK遥控板的驱动，定时器的使用，过流保护例程等等。为了让广大开发者快速上手SpiderXCube，T74开发板和JY144开发板。&lt;/p&gt;
+
+&lt;p&gt;SpiderXCube的目录结构如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    ADC_VoltageSampling/                        T74 ADC电压采样例程
+    BSP/                                        T74硬件相关驱动库
+    clean.sh*                                   清除编译生成的二进制文件
+    CMSIS/                                      ARM CMSIS库
+    Datasheets/                                 相关的Datasheet
+    EXTI_OverCurrent/                           T74过流保护例程
+    FLASH_SaveData/                             T74 flash操作历程
+    Joystick-ROM/                               JY144开发板固件
+    Labview/                                    T74上位机 labview控制程序，只适用于2.4G通信
+    Middlewares/                                第三方库
+    README.txt                                  说明文档
+    SCH/                                        原理图
+    SimpleControlBLE/                           T74蓝牙控制历程，支持蓝牙2.0和蓝牙4.0模块
+    SimpleControlNRF/                           T74 2.4G无线控制历程，支持JY144作为上位机或Labview作为上位机控制
+    SpiderXCube-Bluetooth-iOS/                  简单的iOS蓝牙读写历程
+    STM32F10x_FWLib/                            STM32F10x固件库
+    TIM_ServoControl/                           T74定时器历程
+    USART_DMA_Bluetooth2_0/                     蓝牙2.0模块历程，使用DMA传输数据
+    USART_DMA_Bluetooth4_0/                     蓝牙4.0模块历程，使用DMA传输数据
+    USART_IT_Bluetooth2_0/                      蓝牙2.0模块历程，使用串口中断传输数据
+    USART_IT_Bluetooth4_0/                      蓝牙4.0模块历程，使用串口中断传输数据
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;快速上手建议&quot;&gt;快速上手建议&lt;/h2&gt;
+
+&lt;p&gt;对于刚接触SpiderXCube的用户，有如下几个建议：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;T74控制版的端口映射表，请查看 &lt;strong&gt;SCH/控制板端口配置表V02(20151218).xls&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;JY144遥控板的端口映射表，请查看 &lt;strong&gt;SCH/遥控板端口配置表V01(20151218).xls&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;若开发者想熟悉如何使用JY144遥控板，则可以阅读 &lt;strong&gt;Joystick-ROM&lt;/strong&gt; 的相关代码。&lt;/li&gt;
+  &lt;li&gt;若想熟悉如何使用蓝牙控制，则阅读 &lt;strong&gt;SimpleControlBLE&lt;/strong&gt;的相关代码。&lt;/li&gt;
+  &lt;li&gt;若对iOS控制蓝牙比较感兴趣，可以阅读 &lt;strong&gt;SpiderXCube-Bluetooth-iOS&lt;/strong&gt;，里面包含了最基本的蓝牙读写历程。&lt;/li&gt;
+  &lt;li&gt;若想熟悉如何使用2.4G控制舵机，则可以阅读 &lt;strong&gt;SimpleControlNRF&lt;/strong&gt;的下位机代码，和 &lt;strong&gt;Labview&lt;/strong&gt;关于上位机的代码。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;spiderxcube各模块的介绍&quot;&gt;SpiderXCube各模块的介绍&lt;/h2&gt;
+
+&lt;h3 id=&quot;1-配置文件spidernanoconfigh&quot;&gt;1. 配置文件SpiderNANOConfig.h&lt;/h3&gt;
+
+&lt;p&gt;在每一个历程的Inc目录下，都有一个名为SpiderNANOConfig.h的配置文件，该文件用于设置一些编译相关宏。其中包括：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;DEBUG&lt;/strong&gt;          - 用于控制是否通过串口打印调试信息&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;BATTERY_7V4&lt;/strong&gt;    - 当定义该宏的时候，则说明使用7.4v电池，若注释该行的时候，则表示使用11.1v的锂电池。对于T74，则必须定义该宏；对于T11/D11则根据实际情况决定是否定义该宏&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;BLUETOOTH_4_0&lt;/strong&gt;  - 是否使用蓝牙4.0模块，当BLUETOOTH_4_0为0的时候，则使用蓝牙2.0模块，若为非0值的时候，则说明使用蓝牙4.0模块&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;2-adc电压采样&quot;&gt;2. ADC电压采样&lt;/h3&gt;
+
+&lt;p&gt;T74目前只支持7.4v锂电池，而T11则支持7.4v和11.1v的锂电，它们同样使用SpiderXCube作为固件库。在使用该历程前，请阅读SpiderNANOConfig.h的配置说明。电压采样是为了保护电池，免受过度放电而缩短电池的寿命。&lt;/p&gt;
+
+&lt;p&gt;在BSP/Inc/power.h中，定义了电压与ADC值的对应关系：&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt;&lt;span class=&quot;cm&quot;&gt;/**&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt; *@brief  过流/过压保护值&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt; */&lt;/span&gt;
+
+&lt;span class=&quot;cp&quot;&gt;#ifdef BATTERY_7V4                                     &lt;/span&gt;
+    &lt;span class=&quot;cp&quot;&gt;#define POWER_WARN_VOLTAGE               2358   &lt;/span&gt;&lt;span class=&quot;cm&quot;&gt;/*!&amp;lt; 7.6V, 对应AD值       */&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&lt;/span&gt;
+    &lt;span class=&quot;cp&quot;&gt;#define POWER_LOW_VOLTAGE                2234   &lt;/span&gt;&lt;span class=&quot;cm&quot;&gt;/*!&amp;lt; 7.2V, 对应AD值       */&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;#else&lt;/span&gt;
+    &lt;span class=&quot;cp&quot;&gt;#define POWER_WARN_VOLTAGE               3537   &lt;/span&gt;&lt;span class=&quot;cm&quot;&gt;/*!&amp;lt; 11.4V AD值           */&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&lt;/span&gt;
+    &lt;span class=&quot;cp&quot;&gt;#define POWER_LOW_VOLTAGE                3351   &lt;/span&gt;&lt;span class=&quot;cm&quot;&gt;/*!&amp;lt; 10.8V AD值           */&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;#endif&lt;/span&gt;
+
+&lt;span class=&quot;cp&quot;&gt;#define POWER_OVER_CURRENT               846    &lt;/span&gt;&lt;span class=&quot;cm&quot;&gt;/*!&amp;lt; 15A, 对应AD值1000:17.74A */&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;#define POWER_MAX_SAMPLE_SIZE            5      &lt;/span&gt;&lt;span class=&quot;cm&quot;&gt;/*!&amp;lt; 电压/电流缓冲区大小      */&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h4 id=&quot;实践建议&quot;&gt;&lt;em&gt;实践建议&lt;/em&gt;&lt;/h4&gt;
+&lt;hr /&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;这里定义了低电压报警的阈值和低电压强制关闭电源的阈值，分别是POWER_WARN_VOLTAGE和POWER_LOW_VOLTAGE。在实际开发中，当电压低于POWER_WARN_VOLTAGE但高于POWER_LOW_VOLTAGE的时候，则通过蜂鸣器或改变灯闪频率，通知控制人员，电压过低，需要及时充电。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;当采样电压低于POWER_LOW_VOLTAGE的时候，则必须关闭舵机电源，并通过蜂鸣器或灯闪频率通知操作人员，电压过低，不能继续正常工作，必须进行充电。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;以下是main.c的代码，&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;cm&quot;&gt;/* Systick Init */&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;HAL_InitTick&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;IRQ_SYSTICK_Priority&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    
+    &lt;span class=&quot;n&quot;&gt;LED_Init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+    
+    &lt;span class=&quot;cm&quot;&gt;/* ADC voltage sampleing init */&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;Adc_Init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+    
+    &lt;span class=&quot;cm&quot;&gt;/* ADC DMA init*/&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;Adc_DMA_Init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+    
+    &lt;span class=&quot;cm&quot;&gt;/*20 ms  DIV=1 AHB1 = 36M*2  7200*200/72(us)=20ms       &lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt;      battery voltage and current sampling             */&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;Adc_Timer_Init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;7199&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;199&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    
+    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;cm&quot;&gt;/*--------- 电压检测 -----------*/&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;voltage&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;POWER_OVER_VOLTAGE&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;cm&quot;&gt;/* 过压 */&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;LED_flash&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;500&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;voltage&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;POWER_WARN_VOLTAGE&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;cm&quot;&gt;/* 低压警告 */&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;LED_flash&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;voltage&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;POWER_LOW_VOLTAGE&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;cm&quot;&gt;/* 电压过低 */&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;LED_flash&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;500&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        
+        &lt;span class=&quot;cm&quot;&gt;/*----------- 电流检测 ---------*/&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;current&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;POWER_OVER_CURRENT&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;cm&quot;&gt;/* 软件检测过流 */&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;LED_flash&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;15&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;500&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;首先对时钟进行初始化，LED初始化，ADC / ADC DMA初始化，和采样定时器的初始化，然后在循环体中，检测当前的采样电压值，判断是否低于警告或错误的电压阈值。当电压低于阈值的时候，根据不同情况设置LED的闪烁频率，用于通知用户电池需要充电。&lt;/p&gt;
+
+&lt;p&gt;ADC电压采样使用了DMA单元数据传输，这样可以减少对MCU的工作量，同时，启用了一个定时器每20ms触发一次采样，当定时器溢出时读取ADC值。电压使用了均值滤波，用户可以根据自己的需要实现不同的滤波算法。&lt;/p&gt;</content><author><name>Enix Yu</name></author><summary type="html">简介</summary></entry><entry><title type="html">SpiderX T74开发板快速上手指南</title><link href="http://localhost:4000/quick-start-guide-for-spiderx-t74" rel="alternate" type="text/html" title="SpiderX T74开发板快速上手指南" /><published>2016-12-27T15:59:36+08:00</published><updated>2016-12-27T15:59:36+08:00</updated><id>http://localhost:4000/quick-start-guide-for-spiderx-t74</id><content type="html" xml:base="http://localhost:4000/quick-start-guide-for-spiderx-t74">&lt;h2 id=&quot;简介&quot;&gt;简介&lt;/h2&gt;
 
 &lt;p&gt;SpiderX T74是一款自主研发的专门面向机器人爱好者的开发平台，借助T74，你可以实现多达22路的舵机控制，同时集成了蓝牙4.0模块接口，蓝牙2.0模块接口，wifi接口，NRF24L01 SPI 接口。方便你选择市面流行的任意一种无线方案实现无线控制。&lt;/p&gt;
 

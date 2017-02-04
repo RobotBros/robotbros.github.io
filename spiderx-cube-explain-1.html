@@ -76,7 +76,144 @@
         <div class="ui grid">
             <div class="sixteen wide column" style="font-size: 1.1em;">
                 <!-- 内容-->
-                
+                <h2 id="简介">简介</h2>
+
+<p>SpiderXCube是舵机控制板T74，遥控板JY144的代码库例程。SpiderXCube类似于ST公司的STM32Fxx_Cube，其中包括了最基本的单元使用例程，例如2.4G无线控制，蓝牙2.0，蓝牙4.0模块的使用例程，JOYSTICK遥控板的驱动，定时器的使用，过流保护例程等等。为了让广大开发者快速上手SpiderXCube，T74开发板和JY144开发板。</p>
+
+<p>SpiderXCube的目录结构如下：</p>
+
+<pre><code>    ADC_VoltageSampling/                        T74 ADC电压采样例程
+    BSP/                                        T74硬件相关驱动库
+    clean.sh*                                   清除编译生成的二进制文件
+    CMSIS/                                      ARM CMSIS库
+    Datasheets/                                 相关的Datasheet
+    EXTI_OverCurrent/                           T74过流保护例程
+    FLASH_SaveData/                             T74 flash操作历程
+    Joystick-ROM/                               JY144开发板固件
+    Labview/                                    T74上位机 labview控制程序，只适用于2.4G通信
+    Middlewares/                                第三方库
+    README.txt                                  说明文档
+    SCH/                                        原理图
+    SimpleControlBLE/                           T74蓝牙控制历程，支持蓝牙2.0和蓝牙4.0模块
+    SimpleControlNRF/                           T74 2.4G无线控制历程，支持JY144作为上位机或Labview作为上位机控制
+    SpiderXCube-Bluetooth-iOS/                  简单的iOS蓝牙读写历程
+    STM32F10x_FWLib/                            STM32F10x固件库
+    TIM_ServoControl/                           T74定时器历程
+    USART_DMA_Bluetooth2_0/                     蓝牙2.0模块历程，使用DMA传输数据
+    USART_DMA_Bluetooth4_0/                     蓝牙4.0模块历程，使用DMA传输数据
+    USART_IT_Bluetooth2_0/                      蓝牙2.0模块历程，使用串口中断传输数据
+    USART_IT_Bluetooth4_0/                      蓝牙4.0模块历程，使用串口中断传输数据
+</code></pre>
+
+<h2 id="快速上手建议">快速上手建议</h2>
+
+<p>对于刚接触SpiderXCube的用户，有如下几个建议：</p>
+
+<ul>
+  <li>T74控制版的端口映射表，请查看 <strong>SCH/控制板端口配置表V02(20151218).xls</strong></li>
+  <li>JY144遥控板的端口映射表，请查看 <strong>SCH/遥控板端口配置表V01(20151218).xls</strong></li>
+  <li>若开发者想熟悉如何使用JY144遥控板，则可以阅读 <strong>Joystick-ROM</strong> 的相关代码。</li>
+  <li>若想熟悉如何使用蓝牙控制，则阅读 <strong>SimpleControlBLE</strong>的相关代码。</li>
+  <li>若对iOS控制蓝牙比较感兴趣，可以阅读 <strong>SpiderXCube-Bluetooth-iOS</strong>，里面包含了最基本的蓝牙读写历程。</li>
+  <li>若想熟悉如何使用2.4G控制舵机，则可以阅读 <strong>SimpleControlNRF</strong>的下位机代码，和 <strong>Labview</strong>关于上位机的代码。</li>
+</ul>
+
+<h2 id="spiderxcube各模块的介绍">SpiderXCube各模块的介绍</h2>
+
+<h3 id="1-配置文件spidernanoconfigh">1. 配置文件SpiderNANOConfig.h</h3>
+
+<p>在每一个历程的Inc目录下，都有一个名为SpiderNANOConfig.h的配置文件，该文件用于设置一些编译相关宏。其中包括：</p>
+
+<ul>
+  <li><strong>DEBUG</strong>          - 用于控制是否通过串口打印调试信息</li>
+  <li><strong>BATTERY_7V4</strong>    - 当定义该宏的时候，则说明使用7.4v电池，若注释该行的时候，则表示使用11.1v的锂电池。对于T74，则必须定义该宏；对于T11/D11则根据实际情况决定是否定义该宏</li>
+  <li><strong>BLUETOOTH_4_0</strong>  - 是否使用蓝牙4.0模块，当BLUETOOTH_4_0为0的时候，则使用蓝牙2.0模块，若为非0值的时候，则说明使用蓝牙4.0模块</li>
+</ul>
+
+<h3 id="2-adc电压采样">2. ADC电压采样</h3>
+
+<p>T74目前只支持7.4v锂电池，而T11则支持7.4v和11.1v的锂电，它们同样使用SpiderXCube作为固件库。在使用该历程前，请阅读SpiderNANOConfig.h的配置说明。电压采样是为了保护电池，免受过度放电而缩短电池的寿命。</p>
+
+<p>在BSP/Inc/power.h中，定义了电压与ADC值的对应关系：</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="cm">/**</span>
+<span class="cm"> *@brief  过流/过压保护值</span>
+<span class="cm"> */</span>
+
+<span class="cp">#ifdef BATTERY_7V4                                     </span>
+    <span class="cp">#define POWER_WARN_VOLTAGE               2358   </span><span class="cm">/*!&lt; 7.6V, 对应AD值       */</span><span class="cp"></span>
+    <span class="cp">#define POWER_LOW_VOLTAGE                2234   </span><span class="cm">/*!&lt; 7.2V, 对应AD值       */</span><span class="cp"></span>
+<span class="cp">#else</span>
+    <span class="cp">#define POWER_WARN_VOLTAGE               3537   </span><span class="cm">/*!&lt; 11.4V AD值           */</span><span class="cp"></span>
+    <span class="cp">#define POWER_LOW_VOLTAGE                3351   </span><span class="cm">/*!&lt; 10.8V AD值           */</span><span class="cp"></span>
+<span class="cp">#endif</span>
+
+<span class="cp">#define POWER_OVER_CURRENT               846    </span><span class="cm">/*!&lt; 15A, 对应AD值1000:17.74A */</span><span class="cp"></span>
+<span class="cp">#define POWER_MAX_SAMPLE_SIZE            5      </span><span class="cm">/*!&lt; 电压/电流缓冲区大小      */</span><span class="cp"></span></code></pre></figure>
+
+<h4 id="实践建议"><em>实践建议</em></h4>
+<hr />
+<blockquote>
+  <p>这里定义了低电压报警的阈值和低电压强制关闭电源的阈值，分别是POWER_WARN_VOLTAGE和POWER_LOW_VOLTAGE。在实际开发中，当电压低于POWER_WARN_VOLTAGE但高于POWER_LOW_VOLTAGE的时候，则通过蜂鸣器或改变灯闪频率，通知控制人员，电压过低，需要及时充电。</p>
+</blockquote>
+
+<blockquote>
+  <p>当采样电压低于POWER_LOW_VOLTAGE的时候，则必须关闭舵机电源，并通过蜂鸣器或灯闪频率通知操作人员，电压过低，不能继续正常工作，必须进行充电。</p>
+</blockquote>
+
+<hr />
+
+<p>以下是main.c的代码，</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="cm">/* Systick Init */</span>
+    <span class="n">HAL_InitTick</span><span class="p">(</span><span class="n">IRQ_SYSTICK_Priority</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+    
+    <span class="n">LED_Init</span><span class="p">();</span>
+    
+    <span class="cm">/* ADC voltage sampleing init */</span>
+    <span class="n">Adc_Init</span><span class="p">();</span>
+    
+    <span class="cm">/* ADC DMA init*/</span>
+    <span class="n">Adc_DMA_Init</span><span class="p">();</span>
+    
+    <span class="cm">/*20 ms  DIV=1 AHB1 = 36M*2  7200*200/72(us)=20ms       </span>
+<span class="cm">      battery voltage and current sampling             */</span>
+    <span class="n">Adc_Timer_Init</span><span class="p">(</span><span class="mi">7199</span><span class="p">,</span> <span class="mi">199</span><span class="p">);</span>
+    
+    <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="cm">/*--------- 电压检测 -----------*/</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="n">voltage</span> <span class="o">&gt;</span> <span class="n">POWER_OVER_VOLTAGE</span> <span class="p">)</span>
+        <span class="p">{</span>
+            <span class="cm">/* 过压 */</span>
+            <span class="n">LED_flash</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">500</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="n">voltage</span> <span class="o">&lt;</span> <span class="n">POWER_WARN_VOLTAGE</span> <span class="p">)</span>
+        <span class="p">{</span>
+            <span class="cm">/* 低压警告 */</span>
+            <span class="n">LED_flash</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1000</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="n">voltage</span> <span class="o">&lt;</span> <span class="n">POWER_LOW_VOLTAGE</span> <span class="p">)</span>
+        <span class="p">{</span>
+            <span class="cm">/* 电压过低 */</span>
+            <span class="n">LED_flash</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">500</span><span class="p">);</span>
+        <span class="p">}</span>
+        
+        <span class="cm">/*----------- 电流检测 ---------*/</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="n">current</span> <span class="o">&gt;</span> <span class="n">POWER_OVER_CURRENT</span> <span class="p">)</span>
+        <span class="p">{</span>
+            <span class="cm">/* 软件检测过流 */</span>
+            <span class="n">LED_flash</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">500</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>首先对时钟进行初始化，LED初始化，ADC / ADC DMA初始化，和采样定时器的初始化，然后在循环体中，检测当前的采样电压值，判断是否低于警告或错误的电压阈值。当电压低于阈值的时候，根据不同情况设置LED的闪烁频率，用于通知用户电池需要充电。</p>
+
+<p>ADC电压采样使用了DMA单元数据传输，这样可以减少对MCU的工作量，同时，启用了一个定时器每20ms触发一次采样，当定时器溢出时读取ADC值。电压使用了均值滤波，用户可以根据自己的需要实现不同的滤波算法。</p>
+
 
             </div>
 
