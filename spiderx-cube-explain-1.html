@@ -88,21 +88,21 @@
     CMSIS/                                      ARM CMSIS库
     Datasheets/                                 相关的Datasheet
     EXTI_OverCurrent/                           T74过流保护例程
-    FLASH_SaveData/                             T74 flash操作历程
+    FLASH_SaveData/                             T74 flash操作例程
     Joystick-ROM/                               JY144开发板固件
     Labview/                                    T74上位机 labview控制程序，只适用于2.4G通信
     Middlewares/                                第三方库
     README.txt                                  说明文档
     SCH/                                        原理图
-    SimpleControlBLE/                           T74蓝牙控制历程，支持蓝牙2.0和蓝牙4.0模块
-    SimpleControlNRF/                           T74 2.4G无线控制历程，支持JY144作为上位机或Labview作为上位机控制
-    SpiderXCube-Bluetooth-iOS/                  简单的iOS蓝牙读写历程
+    SimpleControlBLE/                           T74蓝牙控制例程，支持蓝牙2.0和蓝牙4.0模块
+    SimpleControlNRF/                           T74 2.4G无线控制例程，支持JY144作为上位机或Labview作为上位机控制
+    SpiderXCube-Bluetooth-iOS/                  简单的iOS蓝牙读写例程
     STM32F10x_FWLib/                            STM32F10x固件库
-    TIM_ServoControl/                           T74定时器历程
-    USART_DMA_Bluetooth2_0/                     蓝牙2.0模块历程，使用DMA传输数据
-    USART_DMA_Bluetooth4_0/                     蓝牙4.0模块历程，使用DMA传输数据
-    USART_IT_Bluetooth2_0/                      蓝牙2.0模块历程，使用串口中断传输数据
-    USART_IT_Bluetooth4_0/                      蓝牙4.0模块历程，使用串口中断传输数据
+    TIM_ServoControl/                           T74定时器例程
+    USART_DMA_Bluetooth2_0/                     蓝牙2.0模块例程，使用DMA传输数据
+    USART_DMA_Bluetooth4_0/                     蓝牙4.0模块例程，使用DMA传输数据
+    USART_IT_Bluetooth2_0/                      蓝牙2.0模块例程，使用串口中断传输数据
+    USART_IT_Bluetooth4_0/                      蓝牙4.0模块例程，使用串口中断传输数据
 </code></pre>
 
 <h2 id="快速上手建议">快速上手建议</h2>
@@ -114,7 +114,7 @@
   <li>JY144遥控板的端口映射表，请查看 <strong>SCH/遥控板端口配置表V01(20151218).xls</strong></li>
   <li>若开发者想熟悉如何使用JY144遥控板，则可以阅读 <strong>Joystick-ROM</strong> 的相关代码。</li>
   <li>若想熟悉如何使用蓝牙控制，则阅读 <strong>SimpleControlBLE</strong>的相关代码。</li>
-  <li>若对iOS控制蓝牙比较感兴趣，可以阅读 <strong>SpiderXCube-Bluetooth-iOS</strong>，里面包含了最基本的蓝牙读写历程。</li>
+  <li>若对iOS控制蓝牙比较感兴趣，可以阅读 <strong>SpiderXCube-Bluetooth-iOS</strong>，里面包含了最基本的蓝牙读写例程。</li>
   <li>若想熟悉如何使用2.4G控制舵机，则可以阅读 <strong>SimpleControlNRF</strong>的下位机代码，和 <strong>Labview</strong>关于上位机的代码。</li>
 </ul>
 
@@ -122,7 +122,7 @@
 
 <h3 id="1-配置文件spidernanoconfigh">1. 配置文件SpiderNANOConfig.h</h3>
 
-<p>在每一个历程的Inc目录下，都有一个名为SpiderNANOConfig.h的配置文件，该文件用于设置一些编译相关宏。其中包括：</p>
+<p>在每一个例程的Inc目录下，都有一个名为SpiderNANOConfig.h的配置文件，该文件用于设置一些编译相关宏。其中包括：</p>
 
 <ul>
   <li><strong>DEBUG</strong>          - 用于控制是否通过串口打印调试信息</li>
@@ -132,7 +132,11 @@
 
 <h3 id="2-adc电压采样">2. ADC电压采样</h3>
 
-<p>T74目前只支持7.4v锂电池，而T11则支持7.4v和11.1v的锂电，它们同样使用SpiderXCube作为固件库。在使用该历程前，请阅读SpiderNANOConfig.h的配置说明。电压采样是为了保护电池，免受过度放电而缩短电池的寿命。</p>
+<blockquote>
+  <p>相关目录: ADC_VoltageSampling</p>
+</blockquote>
+
+<p>T74目前只支持7.4v锂电池，而T11则支持7.4v和11.1v的锂电，它们同样使用SpiderXCube作为固件库。在使用该例程前，请阅读SpiderNANOConfig.h的配置说明。电压采样是为了保护电池，免受过度放电而缩短电池的寿命。</p>
 
 <p>在BSP/Inc/power.h中，定义了电压与ADC值的对应关系：</p>
 
@@ -214,6 +218,265 @@
 
 <p>ADC电压采样使用了DMA单元数据传输，这样可以减少对MCU的工作量，同时，启用了一个定时器每20ms触发一次采样，当定时器溢出时读取ADC值。电压使用了均值滤波，用户可以根据自己的需要实现不同的滤波算法。</p>
 
+<h3 id="3-过流检测">3. 过流检测</h3>
+
+<blockquote>
+  <p>相关目录：EXTI_OverCurrent</p>
+</blockquote>
+
+<p>T74板载过流保护单元。舵机在负载情况下工作的时候，电流会随之增大，同时电流也会随着舵机的数量的增加而增大。所以我们需要一个过流保护机制，在电流超过阈值的情况下，必须关闭舵机电源，从而让舵机免受过流而烧毁。</p>
+
+<p>在这里，我们使用了MCU的外部中断，连接过流检测单元，在电流超过阈值的情况下，过流单元会产生外部中断。当MCU检测到过流中断信号后，应该及时切断电源。</p>
+
+<p>过流保护中断的入口地址位于：SpiderXCube/EXTI_OverCurrent/Src/stm32f1xx_it.c</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="cm">/*</span>
+<span class="cm"> *@brief  过流检测保护外部中断</span>
+<span class="cm"> *@param  None</span>
+<span class="cm"> *@retval None</span>
+<span class="cm"> */</span>
+<span class="kt">void</span> <span class="nf">OVERCURRENT_EXTIx_IRQHandler</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">EXTI_GetFlagStatus</span><span class="p">(</span><span class="n">OVERCURRENT_EXTI_LINE</span><span class="p">)</span> <span class="o">!=</span> <span class="n">RESET</span><span class="p">)</span>                              
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">GPIO_ReadInputDataBit</span><span class="p">(</span><span class="n">OVERCURRENT_EXTI_PORT</span><span class="p">,</span> <span class="n">OVERCURRENT_EXTI_PIN</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="cm">/* 通知用户过流 */</span>
+            <span class="n">overCurrentFlag</span> <span class="o">=</span> <span class="n">TRUE</span><span class="p">;</span>
+        <span class="p">}</span>                                                                   
+    <span class="p">}</span>
+    <span class="n">EXTI_ClearITPendingBit</span><span class="p">(</span><span class="n">OVERCURRENT_EXTI_LINE</span><span class="p">);</span><span class="c1">//清除LINE5上的中断标志位</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>main.c主程序中，主函数体用于检测overCurrentFlag标记，并在电路过大的情况下，通过灯闪频率通知用户出现过流情况。</p>
+
+<h4 id="实践建议-1"><em>实践建议</em></h4>
+<hr />
+<blockquote>
+  <p>当过流出现的情况下，必须及时切断舵机电源，而切断舵机电源的逻辑应该在中断函数体内完成，这样可以保证电源的及时切断。</p>
+</blockquote>
+
+<blockquote>
+  <p>切断电源可以调用SpiderXCube/BSP/Inc/servo.h的 <code>void Servo_PWRSwitchSet(u8 switchState);</code></p>
+</blockquote>
+
+<hr />
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="cm">/**</span>
+<span class="cm"> *@brief  Main function</span>
+<span class="cm"> *@param  None</span>
+<span class="cm"> *@retval None</span>
+<span class="cm"> */</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="cm">/* Systick Init */</span>
+    <span class="n">HAL_InitTick</span><span class="p">(</span><span class="n">IRQ_SYSTICK_Priority</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+    
+    <span class="n">LED_Init</span><span class="p">();</span>
+    
+    <span class="cm">/* ADC voltage sampleing init */</span>
+    <span class="n">Adc_CurrentOverStopInit</span><span class="p">();</span>
+    
+    <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="cm">/*----------- 电流检测 ---------*/</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="n">overCurrentFlag</span> <span class="p">)</span>
+        <span class="p">{</span>
+            <span class="cm">/* 软件检测过流 */</span>
+            <span class="n">LED_flash</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">500</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<h3 id="4-flash的读写操作">4. Flash的读写操作</h3>
+
+<p>Flash在MCU的作用中非常重要，可以用于保存用户数据，而在舵机控制中，可以用于保存动作定义。而Flash的操作比较麻烦，因为有时候我们不是一次过写入一批数据，而flash的操作需要先擦除一个区域的数据，然后才能写入数据，最后对该区域进行unlock。</p>
+
+<p>而此例子引入了数据库的事务概念，可以让用户可以自由的控制flash的数据写入。</p>
+
+<p>在进行写入操作前，必须调用事务开启操作：</p>
+
+<pre><code>    void Flash_Sync_TransWriteBegin(void);
+</code></pre>
+
+<p>第二步，需要进行擦除操作</p>
+
+<pre><code>    Boolean Flash_Sync_TransErase(uint32_t address, uint32_t writeLen);
+</code></pre>
+
+<p>接着，就是多次调用写入操作：</p>
+
+<pre><code>    Boolean Flash_Sync_TransWrite(uint32_t address, const uint8_t *buffer, uint32_t writeLen, uint8_t pad);
+</code></pre>
+
+<p>最后，必须调用事务提交操作：</p>
+
+<pre><code>    void Flash_Sync_TransWriteEnd(void);
+</code></pre>
+
+<h3 id="5-舵机控制">5. 舵机控制</h3>
+
+<blockquote>
+  <p>相关目录：TIM_ServoControl</p>
+</blockquote>
+
+<p>舵机的控制，是通过PWM实现。SpiderXCube已经对角度的转动进行了函数封装。舵机操作函数可以查看:<code>SpiderXCube/BSP/Inc/servo.h</code></p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="cm">/**</span>
+<span class="cm"> *@brief  初始化舵机硬件底层驱动</span>
+<span class="cm"> *@param  None</span>
+<span class="cm"> *@retval None</span>
+<span class="cm"> */</span>
+<span class="kt">void</span> <span class="nf">Servo_MspInit</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+
+<span class="cm">/**</span>
+<span class="cm"> *@brief  舵机初始位置动作复位</span>
+<span class="cm"> *@param  None</span>
+<span class="cm"> *@retval None</span>
+<span class="cm"> */</span>
+<span class="kt">void</span> <span class="nf">Servo_StateReset</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+
+<span class="cm">/**</span>
+<span class="cm"> *@brief  Servo Handler init</span>
+<span class="cm"> */</span>
+<span class="kt">void</span> <span class="nf">Servo_HandlerInit</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+
+<span class="cm">/**</span>
+<span class="cm"> *@brief  舵机角度设置</span>
+<span class="cm"> *@param  舵机编号</span>
+<span class="cm"> *@param  转动角度</span>
+<span class="cm"> *@param  是否是初始化操作</span>
+<span class="cm"> *@retval None</span>
+<span class="cm"> */</span>
+<span class="kt">void</span> <span class="nf">Servo_SetServoAngle</span><span class="p">(</span><span class="n">u8</span> <span class="n">servoId</span><span class="p">,</span> <span class="n">u8</span> <span class="n">angle</span><span class="p">,</span> <span class="n">Boolean</span> <span class="n">isReset</span><span class="p">);</span>
+
+<span class="cm">/**</span>
+<span class="cm"> *@brief  舵机总电源开关</span>
+<span class="cm"> *@param  switch:舵机电源开关</span>
+<span class="cm"> *      @arg SERVO_SWITCH_ON: 打开</span>
+<span class="cm"> *      @arg SERVO_SWITCH_OFF: 关闭</span>
+<span class="cm"> *@retval None</span>
+<span class="cm"> */</span>
+<span class="kt">void</span> <span class="nf">Servo_PWRSwitchSet</span><span class="p">(</span><span class="n">u8</span> <span class="n">switchState</span><span class="p">);</span></code></pre></figure>
+
+<p>舵机的管脚映射表如下所示：</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="cm">/**</span>
+<span class="cm"> *@brief  舵机编号</span>
+<span class="cm"> *</span>
+<span class="cm"> *   编号缩写 L: Left;  R: Right;  F: Front;  M: Middle;  E: End</span>
+<span class="cm"> *</span>
+<span class="cm"> *</span>
+<span class="cm"> *                                   +--------+</span>
+<span class="cm"> *                                   |  HEAD  |</span>
+<span class="cm"> *                                   +--------+</span>
+<span class="cm"> *       2           1           0   |        |   9           10         11 </span>
+<span class="cm"> *   +-------+   +-------+   +-------+        +-------+   +-------+   +-------+  </span>
+<span class="cm"> *   | L_F_E |---| L_F_M |---| L_F_F |        | R_F_F |---| R_F_M |---| R_F_E |</span>
+<span class="cm"> *   +-------+   +-------+   +-------+        +-------+   +-------+   +-------+   </span>
+<span class="cm"> *       5           4           3   |        |   12          13         14    </span>
+<span class="cm"> *   +-------+   +-------+   +-------+        +-------+   +-------+   +-------+  </span>
+<span class="cm"> *   | L_M_E |---| L_M_M |---| L_M_F |        | R_M_F |---| R_M_M |---| R_M_E |</span>
+<span class="cm"> *   +-------+   +-------+   +-------+        +-------+   +-------+   +-------+  </span>
+<span class="cm"> *       8           7           6   |        |   15          16         17  </span>
+<span class="cm"> *   +-------+   +-------+   +-------+        +-------+   +-------+   +-------+  </span>
+<span class="cm"> *   | L_B_E |---| L_B_M |---| L_B_F |        | R_B_F |---| R_B_M |---| R_B_E |</span>
+<span class="cm"> *   +-------+   +-------+   +-------+        +-------+   +-------+   +-------+  </span>
+<span class="cm"> *                                   |        |</span>
+<span class="cm"> *                                   |        |</span>
+<span class="cm"> *                     18          19          20          21   </span>
+<span class="cm"> *                 +========+  +========+  +========+  +========+</span>
+<span class="cm"> *                 |  DRV1  |  |  DRV2  |  |  DRV3  |  |  DRV4  |</span>
+<span class="cm"> *                 +========+  +========+  +========+  +========+</span>
+<span class="cm"> *</span>
+<span class="cm"> */</span></code></pre></figure>
+
+<p>例如 <em>0</em> 号舵机表示左前脚的末端关节舵机。</p>
+
+<p>如果需要对 <em>1</em> 号舵机，转动至30度位置，则可以调用：</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="n">Servo_SetServoAngle</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="n">FALSE</span><span class="p">);</span></code></pre></figure>
+
+<h3 id="6-24g控制完整例程">6. 2.4G控制完整例程</h3>
+
+<blockquote>
+  <p>相关目录：SimpleControlNRF</p>
+</blockquote>
+
+<h3 id="7-蓝牙控制完整例程">7. 蓝牙控制完整例程</h3>
+
+<blockquote>
+  <p>相关目录：SimpleControlBLE</p>
+</blockquote>
+
+<p>蓝牙模块支持2.0和4.0，编译选项中，可以通过设置BLUETOOTH_4_0选项，该选项位于<code>SpiderXCube/SimpleControlBLE/Inc/SpiderNANOConfig.h</code></p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="cm">/*</span>
+<span class="cm"> * @brief 蓝牙模块选择(默认开启，表示蓝牙4.0模块)</span>
+<span class="cm"> *</span>
+<span class="cm"> * @note 若使用蓝牙4.0模块则开启，关闭则默认使用蓝牙2.0模块</span>
+<span class="cm"> * 例如，使用蓝牙2.0模块，则把 BLUETOOTH_4_0 定义为 0</span>
+<span class="cm"> *</span>
+<span class="cm"> */</span>
+<span class="cp">#define BLUETOOTH_4_0                     0</span></code></pre></figure>
+
+<p>蓝牙2.0的驱动模块函数声明位于<code>bt2.h</code>，蓝牙2.0模块支持HC-06模块</p>
+
+<p>蓝牙4.0的驱动模块函数声明位于bt4.h，蓝牙4.0模块支持BT-05模块</p>
+
+<p>蓝牙帧格式:</p>
+
+<p>所有长度帧均为20bytes，帧格式如下:</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="o">+----------+-----------------------------+-----------+</span>
+<span class="o">|</span>  <span class="err">帧头</span><span class="n">H</span>    <span class="o">|</span>           <span class="err">帧数据</span><span class="n">D</span>            <span class="o">|</span>  <span class="err">校验和</span><span class="n">C</span>   <span class="o">|</span>
+<span class="o">|</span> <span class="p">(</span><span class="mi">1</span> <span class="n">Byte</span><span class="p">)</span> <span class="o">|</span>          <span class="p">(</span><span class="mi">18</span> <span class="n">bytes</span><span class="p">)</span>         <span class="o">|</span> <span class="p">(</span> <span class="mi">1</span> <span class="n">byte</span><span class="p">)</span> <span class="o">|</span>
+<span class="o">+----------+-----------------------------+-----------+</span></code></pre></figure>
+
+<p>校验和计算公式:</p>
+
+<blockquote>
+  <p>C = (( H + D[0] + D[1] + … + D[17] ) &amp; 0xFF ) ^ 0xFF</p>
+</blockquote>
+
+<p>程序默认支持2种帧</p>
+
+<h4 id="1-设置舵机角度请求">1. 设置舵机角度请求</h4>
+
+<p>请求帧(设置为初始角度):</p>
+
+<blockquote>
+  <blockquote>
+    <p>055a1e5a5a1e5a5a1e5a5a965a5a965a5a965a000000000000000000000000a6</p>
+  </blockquote>
+</blockquote>
+
+<p>答复:    无</p>
+
+<p>请求帧(末端E舵机设置为80角度):</p>
+
+<blockquote>
+  <blockquote>
+    <p>05501e50501e50501e505096505096505096500000000000000000000000001e</p>
+  </blockquote>
+</blockquote>
+
+<blockquote>
+  <blockquote>
+    <p>[ 帧头 L-F-F  L-F-M  L-F-E …. (具体定义请查看servo.h) ]</p>
+  </blockquote>
+</blockquote>
+
+<p>答复:    无</p>
+
+<p>注意，设置的角度必须在舵机的允许范围之内，以免烧毁舵机.</p>
+
+<h4 id="2-获取控制板状态">2. 获取控制板状态</h4>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="err">请求帧</span><span class="o">:</span>  <span class="n">A20000000000000000000000000000000000005D</span>
+<span class="err">答复帧</span><span class="o">:</span>  <span class="n">A3</span> <span class="mo">00</span> <span class="mo">00</span>  <span class="mo">00</span> <span class="mo">00</span>  <span class="mo">00000000</span>  <span class="mo">00000000</span>  <span class="mo">000000000000</span>    <span class="mi">5</span><span class="n">B</span>   
+           <span class="o">-----</span>  <span class="o">-----</span>  <span class="o">--------</span>  <span class="o">--------</span>  <span class="o">------------</span>  <span class="o">------</span>
+            <span class="err">电压</span>    <span class="err">电流</span>   <span class="err">错误代码</span>    <span class="err">警告代码</span>        <span class="err">预留</span>       <span class="err">校验和</span></code></pre></figure>
 
             </div>
 
